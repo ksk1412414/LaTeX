@@ -1,0 +1,20 @@
+\documentclass[tikz,border=3.14mm]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}  % ここでバージョンを指定
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[
+    width=12cm,
+    height=8cm,
+    xlabel={distance[cm]},
+    ylabel={Intensity},
+    title={Time Evolution of Intensity},
+    grid=both,
+    thick,
+  ]
+    \addplot[black,mark size=0.01pt] table [x={distance}, y={Gray_Value}, col sep=tab] {dish_data.dat};
+  \end{axis}
+\end{tikzpicture}
+
+
+\end{document}

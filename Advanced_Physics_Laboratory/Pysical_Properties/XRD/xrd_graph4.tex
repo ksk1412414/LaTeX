@@ -1,0 +1,48 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={$h^2 + k^2 + l^2$},
+    ylabel={$1/d^2 [\text{\AA}^{-2}]$},
+    title={1/d² vs. h² + k² + l² with Linear Fit},
+    grid=both,
+    width=14cm,
+    height=8cm,
+    xmin=0,
+    ymin=0,
+    ymax=1,
+    legend style={at={(0.015,0.96)}, anchor=north west}
+]
+
+% 実験データ点
+\addplot[
+    only marks,
+    mark=*,
+    color=black
+]
+  table[
+      col sep=space,
+      header=false,
+  ] {plot_data.dat};
+\addlegendentry{Measured Data}
+
+% フィッティング直線
+\addplot[
+    domain=0:20,
+    samples=100,
+    color=black,
+    dashed,
+    thick
+]
+{0.0610 * x + 0.0002};
+\addlegendentry{Linear Fit:${1}/{d^2} = 0.0610 \cdot (h^2 + k^2 + l^2) - 0.0002$}
+\end{axis}
+\end{tikzpicture}
+
+\end{document}

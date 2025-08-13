@@ -1,0 +1,60 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[
+    at={(0,-9cm)},
+    anchor=north west,
+    width=12cm,
+    height=6cm,
+    xlabel={v[\mu m/s]},
+    ylabel={Count},
+    title={Velocity Histogram},
+    ybar,
+    grid=major,
+    bar width=8pt,
+  ]
+    \addplot[
+      hist={
+        bins=100,
+        data min=0,
+        data max=15
+      },
+      draw=black,
+      fill opacity=0
+    ] table[
+      col sep=comma,
+      y index=1
+    ] {graph2uv_1.csv};
+    \addplot[
+      hist={
+        bins=100,
+        data min=0,
+        data max=15
+      },
+      draw=blue,
+      fill opacity=0
+    ] table[y index=0] {graph2uv_2.dat};
+    \addplot[
+      hist={
+        bins=100,
+        data min=0,
+        data max=15
+      },
+      draw=red,
+      fill opacity=0
+    ] table[y index=0] {graph2uv_3.dat};
+    \addplot[
+      hist={
+        bins=100,
+        data min=0,
+        data max=15
+      },
+      draw=green,
+      fill opacity=0
+    ] table[y index=0] {graph2uv_4.dat};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

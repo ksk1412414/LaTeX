@@ -1,0 +1,43 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[
+  xlabel={t[s]},
+  ylabel={msd[$\mathrm{\mu m^2}$]},
+  legend style={at={(1.05,1)},anchor=north west},
+  width=12cm,
+  height=8cm
+]
+% 1列
+\addplot[
+  color=black,
+  mark=*,
+  mark size=0.1pt
+] table [x index=0, y index=1, col sep=comma] {graph2u_msd.csv};
+
+% 2列
+\addplot[
+  color=blue,
+  mark=*,
+  mark size=0.1pt
+] table [x index=0, y index=2, col sep=comma] {graph2u_msd.csv};
+
+% 3列
+\addplot[
+  color=red,
+  mark=*,
+  mark size=0.1pt
+] table [x index=0, y index=3, col sep=comma] {graph2u_msd.csv};
+% 4列
+\addplot[
+  color=green,
+  mark=*,
+  mark size=0.1pt
+] table [x index=0, y index=4, col sep=comma] {graph2u_msd.csv};
+
+\end{axis}
+\end{tikzpicture}
+\end{document}

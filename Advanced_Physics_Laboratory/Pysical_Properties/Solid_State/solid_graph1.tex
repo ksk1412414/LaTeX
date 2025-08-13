@@ -1,0 +1,30 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18} % 最新版が入ってないなら 1.17 や 1.16 にする
+
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[
+    xlabel={I[mA]},
+    ylabel={V[mV]},
+    grid=major,
+    width=10cm,
+    height=7cm,
+    thick,
+    title={I-V Characteristics Confirming Ohm’s Law},
+  ]
+    \addplot[
+      color=black,
+      only marks,
+      mark=x,
+    ]
+    table [x index=0, y index=1] {solid_graph1.dat};
+    \addplot[
+      black,
+      thick,
+      domain=-100:100 % xの範囲は適宜調整
+    ] {0.0073*x + 0.0029};
+    \node at (axis cs:-100,0.55) [anchor=west, fill=white, draw=black] {$\displaystyle y = 0.0073x + 0.0029$};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

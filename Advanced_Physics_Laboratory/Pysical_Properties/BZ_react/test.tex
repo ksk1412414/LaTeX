@@ -1,0 +1,27 @@
+\documentclass{standalone}
+\usepackage{pythontex}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+\begin{document}
+
+% Removed pyconsole environment as it is not needed in standalone documents
+\begin{pycode}
+import numpy as np
+x = np.linspace(-2, 2, 100)
+y = x - x**3 / 3
+with open('C:/Users/KSK04/課題/物理学総合実験/物性/BZ反応/graph_data.dat', 'w') as f:
+    for xi, yi in zip(x, y):
+        f.write(f"{xi} {yi}\n")
+\end{pycode}
+  \begin{tikzpicture}
+    \begin{axis}[
+      xlabel={$x$}, ylabel={$z$},
+      title={nullcline:$z = x - \frac{x^3}{3}$},
+      grid=both
+    ]
+      \addplot[blue, thick] table {graph_data.dat};
+    \end{axis}
+  \end{tikzpicture}
+
+\end{document}

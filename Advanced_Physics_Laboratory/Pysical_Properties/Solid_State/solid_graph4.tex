@@ -1,0 +1,24 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18} % 最新版が入ってないなら 1.17 や 1.16 にする
+
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[
+    xlabel={T[K]},
+    ylabel={L[\mu H]},
+    grid=major,
+    width=10cm,
+    height=7cm,
+    thick,
+    title={Temperature Dependence of Self-Inductance (Cooling)},
+  ]
+    \addplot[
+      color=black,
+      only marks,
+      mark=x,
+    ]
+    table [x index=0, y index=1] {solid_graph4.dat};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

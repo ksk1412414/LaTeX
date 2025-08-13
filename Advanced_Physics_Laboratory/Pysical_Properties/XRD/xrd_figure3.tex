@@ -1,0 +1,46 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usepackage{fontspec}
+\usepackage{physics}
+\setmainfont{IPAexMincho}
+\usetikzlibrary{arrows.meta, angles}
+
+\begin{document}
+\begin{tikzpicture}[scale=1.5]
+% ステージ（薄く、色なし）
+\draw (-0.8,-0.15) rectangle (0.8,-0.05);
+\node[right] at (-0.5,-0.3) {ステージ};
+
+% 試料（さらに薄く）
+\draw (-0.5,0) rectangle (0.5,-0.05);
+\draw (0.5,0) -- (0.7,0.11);
+\node[right] at (0.6,0.11) {試料};
+
+% X線源（左上、入射線に垂直に設置）
+\draw[rotate around={45:(-1.5,1.5)}] (-1.8,1.2) rectangle (-1.2,1.8);
+\node at (-1.5,2.1) {X線源};
+\draw [->] (-1.1,1.1) arc[start angle=-45, end angle=-75,radius=0.4];
+\draw [->] (-1.1,1.1) arc[start angle=-45, end angle=-15,radius=0.4];
+
+% 入射ビーム（斜め下に向かう）
+\draw[->] (-1.5,1.5) -- (0,0);
+
+% 検出器（右上、反射線に垂直に設置）
+\draw[rotate around={-45:(1.5,1.5)}] (1.2,1.2) rectangle (1.8,1.8);
+\node at (1.5,2.1) {検出器};
+\draw [->] (1.1,1.1) arc[start angle=-135, end angle=-165,radius=0.4];
+\draw [->] (1.1,1.1) arc[start angle=-135, end angle=-105,radius=0.4];
+
+% 反射ビーム（試料表面で反射、斜め上へ）
+\draw[dashed,->] (0,0) -- (1.5,1.5);
+
+% 入射角θ
+\draw[dashed] (-0.4,0) arc[start angle=180, end angle=135, radius=0.4];
+\node at (-0.6,0.2) {$\theta$};
+
+% 反射角θ
+\draw[dashed] (0.4,0) arc[start angle=0, end angle=45, radius=0.4];
+\node at (0.6,0.2) {$\theta$};
+
+\end{tikzpicture}
+\end{document}

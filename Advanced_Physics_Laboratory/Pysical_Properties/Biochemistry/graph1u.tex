@@ -1,0 +1,28 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+
+\begin{tikzpicture}
+  \begin{axis}[
+    xlabel={X[\mu m]},
+    ylabel={Y[\mu m]},
+    title={Trajectory of Particle},
+    grid=major,
+    width=12cm,
+    height=12cm
+  ]
+    \addplot[
+      color=black,
+      mark=*,
+      mark size=0.1pt
+        ] table[
+      col sep=comma,
+      x index=0,
+      y index=1
+        ] {graph1u.csv};
+      \end{axis}
+    \end{tikzpicture}
+
+\end{document}

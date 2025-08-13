@@ -1,0 +1,63 @@
+\documentclass[tikz,border=5pt]{standalone}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{decorations.pathmorphing,arrows.meta}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\begin{tikzpicture}[scale=1.1]
+
+  % スリット面とスクリーン
+  \draw[thick] (0,-2.2) -- (0,2.2) node[above] {スリット面};
+  \draw[thick] (6,-2.2) -- (6,2.2) node[above] {スクリーン};
+
+  % スリット幅とラベル
+  \draw[very thick] (0,-0.8) -- (0,0.8);
+  \draw[<->] (-0.3,0.8) -- (-0.3,-0.8) node[midway,left] {$d$};
+  \draw[<->] (0.1,-0.1) -- (0.1,0.1) node[midway,right] {$w$};
+
+  % 座標軸ラベル
+  \node at (-0.4,2) {$x_P$};
+  \node at (6.4,2) {$x_Q$};
+
+  % スリットからの素元波（半円）
+  \foreach \y in {-0.6, 0, 0.6} {
+    \draw[dashed] (0,\y) ++(0:0.2) arc[start angle=0,end angle=180,radius=0.2];
+    \draw[dashed] (0,\y) ++(0:0.4) arc[start angle=0,end angle=180,radius=0.4];
+  }
+
+  \node[right] at (0.6,0.7) {素元波};
+
+  % スリット点Pとスクリーン点Q
+  \filldraw[black] (0,-0.8) circle (0.05) node[left] {P};
+  \filldraw[black] (6,0) circle (0.05) node[right] {Q};
+
+  % 距離 L と D
+  \draw[<->] (0,-1.5) -- (6,-1.5) node[midway,below] {$L$};
+  \draw[dashed] (0,-0.8) -- (6,0) node[midway,below right] {$D$};
+
+  % 回折強度分布（sinc^2）
+  \begin{axis}[
+      at={(6,0)},
+      anchor=origin,
+      axis x line=none,
+      axis y line=left,
+      ymin=0,
+      ymax=1.2,
+      width=2.4cm,
+      height=4cm,
+      samples=200,
+      domain=-10:10,
+      xtick=\empty,
+      ytick=\empty,
+      enlargelimits=false,
+      axis line style={draw=none},
+    ]
+    \addplot[very thick] {(sin(deg(pi*x))/(pi*x))^2};
+  \end{axis}
+
+  \node at (4.4,2.2) {回折強度分布};
+
+\end{tikzpicture}
+\end{document}

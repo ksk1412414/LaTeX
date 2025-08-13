@@ -1,0 +1,22 @@
+\documentclass[tikz,border=3.14mm]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}  % ここでバージョンを指定
+\begin{document}
+
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={$\theta[^\circ]$},
+    ylabel={Intensity[mV]},
+    title={Intensity Distribution from a Self-Made Single-Slit Experiment},
+    grid=major,
+    width=14cm, % プロットのサイズを指定
+    height=6cm,
+]
+
+% データのプロット（黒）
+\addplot[black,only marks] table [x index=0, y index=1, col sep=comma] {single_jisaku.csv};
+
+\end{axis}
+\end{tikzpicture}
+
+\end{document}

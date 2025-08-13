@@ -1,0 +1,28 @@
+\documentclass[tikz,border=3.14mm]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}  % ここでバージョンを指定
+\begin{document}
+
+\begin{tikzpicture}
+\begin{axis}[
+    xlabel={$2\theta[^\circ]$},
+    ylabel={Peak intensity[cps]},
+    title={XRD Pattern of Aluminum with Peak Positions},
+    grid=major,
+    width=17cm, % プロットのサイズを指定
+    height=7cm,
+    ymode=log,  % y軸を対数スケールに設定
+    legend style={at={(1,1)}, anchor=south east},
+]
+
+% データのプロット（黒）
+\addplot[black] table [x=x, y=y, col sep=space] {peak_data.dat};
+\addlegendentry{Data}
+
+% ピーク位置を赤い×印でプロット
+\addplot[only marks, red, mark=x, mark size=3pt] table [x=x_peak, y=y_peak, col sep=space] {peak.dat};
+\addlegendentry{Peaks}
+\end{axis}
+\end{tikzpicture}
+
+\end{document}

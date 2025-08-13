@@ -1,0 +1,57 @@
+\documentclass{standalone}
+\listfiles
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{fontspec}
+\usepackage{physics}
+\setmainfont{IPAexMincho}
+\usetikzlibrary{intersections,calc,angles}
+\begin{document}
+\begin{tikzpicture}[scale=3]
+
+  % --- 座標の定義（右手系：a→右, b→奥（短く）, c→上） ---
+  \coordinate (O) at (0,0);                % 原点
+  \coordinate (X) at (1,0);                % a方向
+  \coordinate (Y) at (0.25,0.35);          % b方向 （奥行き半分）
+  \coordinate (Z) at (0,1);                % c方向
+  
+  % --- 単位格子の立体的な枠（疑似3D） ---
+  \coordinate (XY) at ($(X)+(Y)$);
+  \coordinate (XZ) at ($(X)+(Z)$);
+  \coordinate (YZ) at ($(Y)+(Z)$);
+  \coordinate (XYZ) at ($(X)+(Y)+(Z)$);
+  
+  % --- 軸の描画 ---
+  \draw[->,very thick] (O) -- (X) node[below right] {$\vb*{a}$};
+  \draw[->,very thick] (O) -- (Y) node[anchor=south west] {$\vb*{b}$};
+  \draw[->,very thick] (O) -- (Z) node[left] {$\vb*{c}$};
+  
+  % --- 立方体の枠線 ---
+  \draw[thick] (O) -- (X) -- (XY);    % 底面
+  \draw[thick] (O) -- (Y) ;
+  \draw[thick,dashed] (XY) -- (Y);
+  \draw[thick] (O) -- (Z) -- (XZ) -- (X);             % 前面
+  \draw[thick,dashed] (Y) -- (YZ) -- (Z);                    % 左面
+  \draw[thick] (YZ) -- (Z);
+  \draw[thick] (XY) -- (XYZ) -- (XZ);                 % 上面
+  \draw[thick] (YZ) -- (XYZ);                         % 奥面
+  
+  % --- (hkl)面三角形 ---
+  % h=k=l=2 の例: a/2, b/2, c/2
+  \coordinate (HX) at ($(O)!0.5!(X)$);    % a/h: a/2
+  \coordinate (HY) at ($(O)!0.5!(Y)$);    % b/k: b/2
+  \coordinate (HZ) at ($(O)!0.5!(Z)$);    % c/l: c/2
+  
+  \filldraw[fill=gray!30, draw=black, opacity=0.6]
+    (HX) -- (HY) -- (HZ) -- cycle;
+  
+  % --- 各点のラベル（線と重ならない位置に配置） ---
+  \node at ($(HX)+(0,-0.1)$) {$\frac{a}{h}$};  % 下側にラベル
+  \node at ($(HY)+(-0.07,0.02)$) {$\frac{b}{k}$};  % 左側にラベル
+  \node at ($(HZ)+(-0.05,0.05)$) {$\frac{c}{l}$};% 左上にラベル
+  
+  % --- (hkl)面ラベル---
+  \draw[->] (1.25,0.2) -- (0.25,0.225);
+  \node at (1.5,0.2) {$(hkl)$面};
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,124 @@
+\documentclass[10pt,titlepage,a5paper]{ltjsbook}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{etoolbox}
+\usepackage{subfiles}
+\usepackage{cleveref}
+\usepackage{tcolorbox}
+\usepackage{quotchap}
+\usepackage{fancyhdr}
+\usepackage{wrapfig}
+\usepackage{geometry} % geometry パッケージを読み込む
+\geometry{
+    a5paper,      % 用紙サイズを再度指定（冗長でも安全のため）
+    left=12mm,    % 左の余白を12mmに
+    right=12mm,   % 右の余白を12mmに
+    top=12mm,     % 上の余白を12mmに
+    bottom=12mm,  % 下の余白を12mmに
+    %showframe % 余白の境界線を可視化したい場合（最終出力時には削除）
+}
+\usepackage{titlesec}
+\definecolor{teal}{gray}{0.30}
+\titleformat{\section}[block]{}{}{0pt}
+{
+  \begin{picture}(0,0)
+    \put(-10,-5){
+      \begin{tikzpicture}
+        \fill[teal] (0pt,0pt) rectangle (5pt,19pt);
+      \end{tikzpicture}
+    }
+    \put(-10,-5){
+      \color{teal}
+      \line(1,0){\hsize}
+    }
+  \end{picture}
+  \hspace{0pt}
+  \sffamily \Large \S \thesection
+  \hspace{0pt}
+}
+\pagestyle{fancy} % fancy スタイルを使用することを宣言
+
+% ヘッダーとフッターのすべてのフィールドをクリア
+\fancyhf{}
+
+% 奇数ページ (odd page) のフッター設定
+\fancyfoot[LO]{\thepage} % Left Odd: 左下 (ページ番号)
+\fancyfoot[RO]{}         % Right Odd: 右下 (空にする)
+
+% 偶数ページ (even page) のフッター設定
+\fancyfoot[LE]{}         % Left Even: 左下 (空にする)
+\fancyfoot[RE]{\thepage} % Right Even: 右下 (ページ番号)
+
+% ヘッダーとフッターの下線を消す
+\renewcommand{\headrulewidth}{0pt} % ヘッダーの下線を0pt (消去)
+\renewcommand{\footrulewidth}{0pt} % フッターの上線を0pt (消去)
+
+% chapter の開始ページ（plain スタイル）もフッターにページ番号を表示させる
+\fancypagestyle{plain}{
+  \fancyhf{} % ヘッダーとフッターをクリア
+  \fancyfoot[LO]{\thepage} % 左下 (奇数ページ)
+  \fancyfoot[RE]{\thepage} % 右下 (偶数ページ)
+  \renewcommand{\headrulewidth}{0pt} % ここにも下線消去を設定
+  \renewcommand{\footrulewidth}{0pt} % ここにも下線消去を設定
+}
+%\setlength{\textwidth}{\fullwidth}	%本文の幅(textwidth)を全体の幅(=ヘッダ部の幅)にそろえる
+%\setlength{\evensidemargin}{\oddsidemargin}	%偶数ページの余白と奇数ページの余白をそろえる
+\crefformat{figure}{図~#2#1#3}  % 図の日本語設定
+\crefformat{equation}{式~(#2#1#3)}  % 式の日本語設定
+\crefformat{table}{表~#2#1#3}  % 表の日本語設定
+\begin{document}
+  \thispagestyle{empty}
+  \title{Yakushima Revealed: An In-Depth Journey into Japan's Mystical Island}
+  \author{中村佳介}
+  \maketitle
+  \thispagestyle{empty}
+  \begin{center}
+    \textbf{\huge{はじめに}}\\
+  \end{center}
+  \vspace{2em}
+
+    筆者がこの本を執筆した目的は、筆者の頭の中にある屋久島についての情報を体系的に整理するためである。旅のしおりとしての活用は副次的であり、本分は屋久島を詳らかにしたいという欲求そのものである。そのためどうしても主観的な意見が入り込まざるを得ないが、大目に見て欲しい。また、筆者の個人的な情報が多分に含まれるため、他人に見せる際はその部分を黒塗りにして提供していただきたい。
+    この本を執筆するにあたり、屋久島についての情報を出せるだけ出してみた。すると私がいかに高度な教育を受けていたのか分かってきた。諸君らは自分の故郷についてこれだけかけるだろうか。筆者は大変満足している。ぜひこの本をお供に屋久島を楽しんで頂きたい。
+  \vspace{4em}
+  \begin{center}
+    \textbf{\huge{概観}}\\
+  \end{center}
+  \vspace{2em}
+
+  屋久島は鹿児島県の南に浮かぶ島である。特筆すべきは世界自然遺産に登録されていることで、特に縄文杉はその名を全国のみならず世界に轟かせている。だがそれ以外の部分も大変魅力的であり、訪れる価値のある島である。今回、屋久島についてまとめるにあたり、大きく6つの部分に分けた。1.屋久島の地理 2.屋久島の気候 3.屋久島の動植物 4.屋久島の文化、歴史 5.屋久島の集落、名所 6.今回会うであろう人々
+  内容が重複するところもあるが、同じ事物であってもそれぞれの観点から論じていくので読み飛ばさないでくれるとありがたい。
+  {
+  \thispagestyle{empty}
+  \tableofcontents
+  \thispagestyle{empty}
+  \setcounter{page}{0}
+  }
+  \begin{savequote}
+    洋上のアルプス  
+  \end{savequote}
+  \chapter{屋久島の地理}
+  \setcounter{page}{1}
+  \subfile{chapter1.tex}
+  \begin{savequote}
+    一ヵ月、ほとんど雨ですな。屋久島は月のうち、三十五日は雨というぐらいでございますからね……『浮雲』(林芙美子)
+  \end{savequote}
+  \chapter{屋久島の気候}
+  \subfile{chapter2.tex}
+  \begin{savequote}
+    海辺の亜熱帯から山頂の亜寒帯まで
+  \end{savequote}
+  \chapter{屋久島の生物}
+  \subfile{chapter3.tex}
+  %\chapter{屋久島の文化、歴史}
+  %\subfile{chapter4.tex}
+  %\chapter{屋久島の集落、名所}
+  %\subfile{chapter5.tex}
+  %\chapter{今回会うであろう人々}
+  %\subfile{chapter6.tex}
+
+\end{document}

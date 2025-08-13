@@ -1,0 +1,53 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[
+    xlabel={month},
+    ylabel={Precipitation[mm]},
+    grid=major,
+    width=20cm,
+    height=12cm,
+    legend pos=north west
+  ]
+    \addplot[%yakushima
+      color=red,
+      mark=*,
+      thick
+        ] table [x index=0, y index=1, col sep=comma] {chap_graph1.dat};
+        \addlegendentry{Yakushima}
+    \addplot[%naha
+      color=green,
+      mark=*,
+      thick
+        ] table [x index=0, y index=2, col sep=comma] {chap_graph1.dat};
+        \addlegendentry{Naha}
+    \addplot[%fukuoka
+      color=black,
+      mark=*,
+      thick
+        ] table [x index=0, y index=3, col sep=comma] {chap_graph1.dat};
+        \addlegendentry{Fukuoka}
+    \addplot[%gifu
+      color=orange,
+      mark=*,
+      thick
+        ] table [x index=0, y index=4, col sep=comma] {chap_graph1.dat};
+        \addlegendentry{Gifu}
+    \addplot[%okayama
+      color=blue,
+      mark=*,
+      thick
+        ] table [x index=0, y index=5, col sep=comma] {chap_graph1.dat};
+        \addlegendentry{Okayama}
+    \addplot[%shizuoka
+      color=purple,
+      mark=*,
+      thick
+        ] table [x index=0, y index=6, col sep=comma] {chap_graph1.dat};
+        \addlegendentry{Shizuoka}
+  \end{axis}
+\end{tikzpicture}
+\end{document}
